@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pertandingan Inovasi 2026</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen">
+  <div id="app" class="min-h-screen flex flex-col">
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-blue-600 to-indigo-700 text-white shadow-lg">
+      <div class="container mx-auto px-4 py-6">
+        <div class="flex flex-col md:flex-row justify-between items-center">
+          <h1 class="text-3xl md:text-4xl font-bold mb-4 md:mb-0 flex items-center">
+            <i class="fas fa-rocket mr-3"></i>
+            Pertandingan Inovasi Muda 2026
+          </h1>
+          <nav class="flex space-x-4">
+            <button onclick="loadPage('home')" class="px-4 py-2 rounded-lg hover:bg-blue-500 transition-all duration-300 transform hover:scale-105">
+              <i class="fas fa-home mr-2"></i>Home
+            </button>
+            <button onclick="loadPage('kategori')" class="px-4 py-2 rounded-lg hover:bg-blue-500 transition-all duration-300 transform hover:scale-105">
+              <i class="fas fa-list mr-2"></i>Kategori
+            </button>
+            <button onclick="loadPage('daftar')" class="px-4 py-2 rounded-lg hover:bg-blue-500 transition-all duration-300 transform hover:scale-105">
+              <i class="fas fa-user-plus mr-2"></i>Daftar
+            </button>
+            <button onclick="toggleDark()" id="darkModeToggle" class="px-4 py-2 rounded-lg hover:bg-blue-500 transition-all duration-300 transform hover:scale-105">
+              <i class="fas fa-moon mr-2"></i>Mode Gelap
+            </button>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main id="mainContent" class="flex-grow container mx-auto px-4 py-8">
+      <!-- Home Page Content -->
+      <div id="homePage" class="fade-in">
+        <section class="mb-12 bg-white rounded-xl shadow-lg p-6 animate-fadeIn">
+          <h2 class="text-2xl font-bold text-gray-800 mb-4 flex items-center">
+            <i class="fas fa-info-circle mr-3 text-blue-600"></i>
+            Maklumat Pertandingan
+          </h2>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="bg-blue-50 p-4 rounded-lg border border-blue-200">
+              <i class="fas fa-calendar-alt text-blue-600 text-2xl mb-2"></i>
+              <p class="font-semibold text-gray-700">Tarikh:</p>
+              <p class="text-gray-600">8 Ogos 2026</p>
+            </div>
+            <div class="bg-green-50 p-4 rounded-lg border border-green-200">
+              <i class="fas fa-clock text-green-600 text-2xl mb-2"></i>
+              <p class="font-semibold text-gray-700">Masa:</p>
+              <p class="text-gray-600">8:00 pagi – 2:00 petang</p>
+            </div>
+            <div class="bg-purple-50 p-4 rounded-lg border border-purple-200">
+              <i class="fas fa-map-marker-alt text-purple-600 text-2xl mb-2"></i>
+              <p class="font-semibold text-gray-700">Tempat:</p>
+              <p class="text-gray-600">Komplesk Akedemik UPSI</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="mb-12 bg-white rounded-xl shadow-lg p-6 animate-fadeIn">
+          <h2 class="text-2xl font-bold text-gray-800 mb-4 flex items-center">
+            <i class="fas fa-hourglass-half mr-3 text-yellow-600"></i>
+            Countdown
+          </h2>
+          <div id="timer" class="text-center py-8 bg-gradient-to-r from-yellow-400 to-orange-500 text-white rounded-lg text-3xl font-bold shadow-lg">
+            Menghitung Mundur...
+          </div>
+        </section>
+
+        <section class="mb-12 bg-white rounded-xl shadow-lg p-6 animate-fadeIn">
+          <h2 class="text-2xl font-bold text-gray-800 mb-4 flex items-center">
+            <i class="fas fa-users mr-3 text-green-600"></i>
+            Jumlah Peserta
+          </h2>
+          <div class="text-center">
+            <p id="counter" class="text-6xl font-bold text-blue-600 mb-4">0</p>
+            <button onclick="addParticipant()" class="bg-gradient-to-r from-green-500 to-green-600 text-white font-bold py-3 px-8 rounded-full shadow-lg hover:from-green-600 hover:to-green-700 transform hover:scale-105 transition-all duration-300">
+              Tambah Peserta
+            </button>
+          </div>
+        </section>
+
+        <section class="mb-12 bg-white rounded-xl shadow-lg p-6 animate-fadeIn">
+          <h2 class="text-2xl font-bold text-gray-800 mb-4 flex items-center">
+            <i class="fas fa-map-marked-alt mr-3 text-red-600"></i>
+            Lokasi
+          </h2>
+          <div class="rounded-lg overflow-hidden shadow-lg">
+            <iframe 
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31851.325257418895!2d101.51854080000001!3d3.719168!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31cb89c69b82a3ab%3A0x7fa38dc86ca7823!2sKompleks%20Akademik%20UPSI!5e0!3m2!1sen!2smy!4v1777513202272!5m2!1sen!2smy" 
+              width="100%" 
+              height="400" 
+              style="border:0;" 
+              allowfullscreen="" 
+              loading="lazy" 
+              referrerpolicy="no-referrer-when-downgrade"
+              class="rounded-lg">
+            </iframe>
+          </div>
+        </section>
+
+        <section class="mb-12 bg-white rounded-xl shadow-lg p-6 animate-fadeIn">
+          <h2 class="text-2xl font-bold text-gray-800 mb-4 flex items-center">
+            <i class="fas fa-lightbulb mr-3 text-yellow-500"></i>
+            Inovasi Yang Dijanjikan
+          </h2>
+          <div class="flex flex-col md:flex-row items-center gap-6">
+            <div class="md:w-1/2">
+              <img 
+                src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
+                alt="Inovasi teknologi" 
+                class="rounded-lg shadow-lg w-full h-64 object-cover"
+              >
+            </div>
+            <div class="md:w-1/2">
+              <p class="text-gray-700 mb-4">
+                Pertandingan Inovasi Muda 2026 akan memperkenalkan pelbagai projek inovasi yang mencakup bidang teknologi, keusahan, dan penyelesaian masalah sosial. Ini merupakan peluang untuk pelajar menunjukkan kreativiti mereka.
+              </p>
+              <ul class="list-disc pl-5 text-gray-700 space-y-2">
+                <li>Peserta akan diberi peluang untuk berkongsi ide mereka dengan pakar industri</li>
+                <li>Projek terbaik akan dipertandingkan di peringkat nasional</li>
+                <li>Disediakan pelbagai sesi latihan dan mentoring</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- Kategori Page Content -->
+      <div id="kategoriPage" class="hidden fade-in">
+        <h2 class="text-3xl font-bold text-center text-gray-800 mb-8">Kategori Pertandingan</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <article class="bg-white rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition-all duration-300">
+            <div class="p-6">
+              <h2 class="text-2xl font-bold text-blue-600 mb-4 flex items-center">
+                <i class="fas fa-school mr-3"></i>
+                Kategori Sekolah
+              </h2>
+              <img 
+                src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
+                alt="Pelajar sekolah membuat inovasi" 
+                class="w-full h-48 object-cover rounded-lg mb-4"
+              >
+              <div class="space-y-2">
+                <p class="text-gray-700"><strong>Syarat:</strong> Pelajar sekolah menengah sahaja</p>
+                <p class="text-gray-700"><strong>Hadiah:</strong> RM300 + Sijil</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="bg-white rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition-all duration-300">
+            <div class="p-6">
+              <h2 class="text-2xl font-bold text-purple-600 mb-4 flex items-center">
+                <i class="fas fa-graduation-cap mr-3"></i>
+                Kategori IPT
+              </h2>
+              <img 
+                src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
+                alt="Pelajar universiti membentang projek inovasi" 
+                class="w-full h-48 object-cover rounded-lg mb-4"
+              >
+              <div class="space-y-2">
+                <p class="text-gray-700"><strong>Syarat:</strong> Pelajar kolej / universiti</p>
+                <p class="text-gray-700"><strong>Hadiah:</strong> RM500 + Trofi</p>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <!-- Daftar Page Content -->
+      <div id="daftarPage" class="hidden fade-in">
+        <section class="mb-12 bg-white rounded-xl shadow-lg p-6 animate-fadeIn">
+          <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
+            <i class="fas fa-user-edit mr-3 text-green-600"></i>
+            Borang Pendaftaran Inovasi
+          </h2>
+          <div class="rounded-lg overflow-hidden shadow-lg">
+            <iframe 
+              src="https://docs.google.com/forms/d/e/1FAIpQLScYxYYsbhgKPuo4M3dQtoS3R-fepYJ-umzz1RyQmiyg_d2_Uw/viewform?embedded=true" 
+              width="100%" 
+              height="800" 
+              frameborder="0" 
+              marginheight="0" 
+              marginwidth="0" 
+              class="rounded-lg"
+            >
+              Loading…
+            </iframe>
+          </div>
+        </section>
+
+        <section class="bg-white rounded-xl shadow-lg p-6 animate-fadeIn">
+          <h2 class="text-2xl font-bold text-gray-800 mb-4 flex items-center">
+            <i class="fas fa-user-check mr-3 text-blue-600"></i>
+            Gambar Peserta
+          </h2>
+          <div class="flex justify-center">
+            <img 
+              src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80" 
+              alt="Peserta mendaftar pertandingan inovasi" 
+              class="rounded-lg shadow-lg max-w-full h-auto object-cover"
+            >
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-4">
+          <p class="text-lg">© 2026 Pertandingan Inovasi</p>
+        </div>
+        <div class="text-center text-gray-400 text-sm">
+          <p>*Disclaimer: Laman ini dibangunkan untuk tujuan pembelajaran/pembangunan web sahaja.</p>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    // Initialize dark mode
+    let isDarkMode = false;
+    
+    // Toggle dark mode function
+    function toggleDark() {
+      isDarkMode = !isDarkMode;
+      const body = document.body;
+      
+      if (isDarkMode) {
+        body.classList.add('bg-gray-900', 'text-white');
+        body.classList.remove('bg-gradient-to-br from-blue-50 to-indigo-100');
+        document.getElementById('darkModeToggle').innerHTML = '<i class="fas fa-sun mr-2"></i>Mode Terang';
+      } else {
+        body.classList.remove('bg-gray-900', 'text-white');
+        body.classList.add('bg-gradient-to-br from-blue-50 to-indigo-100');
+        document.getElementById('darkModeToggle').innerHTML = '<i class="fas fa-moon mr-2"></i>Mode Gelap';
+      }
+    }
+
+    // Load page function
+    function loadPage(pageName) {
+      // Hide all pages
+      document.getElementById('homePage').classList.add('hidden');
+      document.getElementById('kategoriPage').classList.add('hidden');
+      document.getElementById('daftarPage').classList.add('hidden');
+      
+      // Show selected page
+      document.getElementById(pageName + 'Page').classList.remove('hidden');
+    }
+
+    // Counter functionality
+    let participantCount = 0;
+    const counterElement = document.getElementById('counter');
+
+    function addParticipant() {
+      participantCount++;
+      counterElement.textContent = participantCount;
+      
+      // Animation effect
+      counterElement.style.transform = 'scale(1.2)';
+      setTimeout(() => {
+        counterElement.style.transform = 'scale(1)';
+      }, 300);
+    }
+
+    // Countdown timer
+    function updateTimer() {
+      const now = new Date();
+      const eventDate = new Date('August 8, 2026 08:00:00').getTime();
+      const timeRemaining = eventDate - now;
+
+      if (timeRemaining > 0) {
+        const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+
+        document.getElementById('timer').innerHTML = `
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div class="bg-yellow-500 text-white p-4 rounded-lg">
+              <div class="text-3xl font-bold">${days}</div>
+              <div>Hari</div>
+            </div>
+            <div class="bg-orange-500 text-white p-4 rounded-lg">
+              <div class="text-3xl font-bold">${hours}</div>
+              <div>Jam</div>
+            </div>
+            <div class="bg-red-500 text-white p-4 rounded-lg">
+              <div class="text-3xl font-bold">${minutes}</div>
+              <div>Minit</div>
+            </div>
+            <div class="bg-pink-500 text-white p-4 rounded-lg">
+              <div class="text-3xl font-bold">${seconds}</div>
+              <div>Detik</div>
+            </div>
+          </div>
+        `;
+      } else {
+        document.getElementById('timer').innerHTML = '<div class="text-2xl font-bold text-center">Pertandingan telah bermula!</div>';
+      }
+    }
+
+    // Update timer every second
+    setInterval(updateTimer, 1000);
+    updateTimer();
+
+    // Initialize with home page
+    loadPage('home');
+
+    // Add some animations for fade in effect
+    document.querySelectorAll('.fade-in').forEach(el => {
+      el.style.opacity = 0;
+      el.style.transition = 'opacity 0.5s ease-in-out';
+    });
+
+    // Simple animation on load
+    setTimeout(() => {
+      document.querySelectorAll('.fade-in').forEach(el => {
+        el.style.opacity = 1;
+      });
+    }, 100);
+  </script>
+
+  <style>
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .animate-fadeIn {
+      animation: fadeIn 0.6s ease-out forwards;
+    }
+    
+    .fade-in {
+      opacity: 0;
+    }
+    
+    .fade-in:nth-child(1) { animation-delay: 0.1s; }
+    .fade-in:nth-child(2) { animation-delay: 0.2s; }
+    .fade-in:nth-child(3) { animation-delay: 0.3s; }
+    .fade-in:nth-child(4) { animation-delay: 0.4s; }
+    .fade-in:nth-child(5) { animation-delay: 0.5s; }
+    .fade-in:nth-child(6) { animation-delay: 0.6s; }
+  </style>
+</body>
+</html>
